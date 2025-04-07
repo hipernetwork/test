@@ -1,0 +1,92 @@
+<Window x:Class="CustomFileApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        WindowStartupLocation="CenterScreen"
+        Width="600" Height="400"
+        Title="Custom File Minimal UI">
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="0" CornerRadius="8" GlassFrameThickness="0" ResizeBorderThickness="5"/>
+    </WindowChrome.WindowChrome>
+    <Border CornerRadius="8" Background="#FAFAFA" BorderBrush="#DDDDDD" BorderThickness="1"
+            SnapsToDevicePixels="True" Padding="10">
+        <Grid>
+            <!-- Üst kısım: Başlık ve Kapatma butonu -->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <DockPanel Grid.Row="0" Margin="0,0,0,10">
+                <!-- Başlık Sürükleme Alanı -->
+                <Border DockPanel.Dock="Left" Background="Transparent" MouseLeftButtonDown="TitleBar_MouseLeftButtonDown">
+                    <TextBlock Text="Custom File Handler"
+                               VerticalAlignment="Center" Margin="10,0,0,0"
+                               FontSize="16" FontWeight="Bold"/>
+                </Border>
+
+                <!-- Kapatma Butonu -->
+                <Button Content="✕"
+                        DockPanel.Dock="Right"
+                        Width="30" Height="30"
+                        Margin="5"
+                        FontSize="14"
+                        Click="CloseButton_Click"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Right"
+                        BorderThickness="0"
+                        Background="Transparent"
+                        ToolTip="Kapat"/>
+            </DockPanel>
+
+            <!-- İçerik Alanı -->
+            <StackPanel Grid.Row="1" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Center" Width="400">
+
+                <!-- Dosya Seçme -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,15">
+                    <TextBox x:Name="txtFilePath"
+                             Width="300"
+                             Margin="0,0,10,0"
+                             VerticalAlignment="Center"
+                             ToolTip="Dosya Yolunu Giriniz"/>
+                    <Button Content="Dosya Seç"
+                            Padding="10,5"
+                            Click="SelectFileButton_Click"/>
+                </StackPanel>
+
+                <!-- İşlev Butonları -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,15" Spacing="10">
+                    <Button Content="Oku"
+                            Padding="10,5"
+                            Click="ReadButton_Click"/>
+                    <Button Content="Yaz"
+                            Padding="10,5"
+                            Click="WriteButton_Click"/>
+                    <Button Content="Versiyon"
+                            Padding="10,5"
+                            Click="VersionButton_Click"/>
+                </StackPanel>
+
+                <!-- String Okuma/Yazma Butonları -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,15" Spacing="10">
+                    <Button Content="Metin Yaz"
+                            Padding="10,5"
+                            Click="WriteStringButton_Click"/>
+                    <Button Content="Metin Oku"
+                            Padding="10,5"
+                            Click="ReadStringButton_Click"/>
+                </StackPanel>
+
+                <!-- Bilgi Paneli -->
+                <TextBlock x:Name="lblInfo"
+                           Text="Bilgi paneli..."
+                           TextWrapping="Wrap"
+                           FontSize="14"
+                           HorizontalAlignment="Center"
+                           TextAlignment="Center"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>
